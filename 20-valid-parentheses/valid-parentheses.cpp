@@ -10,25 +10,16 @@ public:
                 if(!st.empty()){
                     switch (c){
                         case ')': 
-                            if(st.top()=='('){
-                                st.pop();
-                            }else{
-                                return false;
-                            }
+                            if(st.top()=='(') st.pop();
+                            else return false;
                             break;
                         case '}':
-                            if(st.top()=='{'){
-                                st.pop();
-                            }else{
-                                return false;
-                            }
+                            if(st.top()=='{')st.pop();
+                            else return false;
                             break;
                         case ']':
-                            if(st.top()=='['){
-                                st.pop();
-                            }else{
-                                return false;
-                            }
+                            if(st.top()=='[') st.pop();
+                            else return false;
                             break;
                     }
                 }else{
