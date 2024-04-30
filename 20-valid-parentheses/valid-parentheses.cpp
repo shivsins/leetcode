@@ -7,27 +7,32 @@ public:
             if(c=='(' || c=='{' || c=='['){
                 st.push(c);
             }else{
-                if(c==')'){
-                    if(!st.empty() && st.top()=='('){
-                        st.pop();
-                    }else{
-                        return false;
+                if(!st.empty()){
+                    if(c==')'){
+                        if(st.top()=='('){
+                            st.pop();
+                        }else{
+                            return false;
+                        }
                     }
-                }
-                if(c=='}'){
-                    if(!st.empty() && st.top()=='{'){
-                        st.pop();
-                    }else{
-                        return false;
+                    if(c=='}'){
+                        if(!st.empty() && st.top()=='{'){
+                            st.pop();
+                        }else{
+                            return false;
+                        }
                     }
-                }
-                if(c==']'){
-                    if(!st.empty() && st.top()=='['){
-                        st.pop();
-                    }else{
-                        return false;
+                    if(c==']'){
+                        if(!st.empty() && st.top()=='['){
+                            st.pop();
+                        }else{
+                            return false;
+                        }
                     }
+                }else{
+                    return false;
                 }
+                
             }
 
         }
