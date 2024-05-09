@@ -8,6 +8,7 @@
 // we check first 2. and pop() first car.
 //the we check the next 2 and pop second car
 //so whatever length of stack we are left with in the end is the answer
+//remember to keep time as float.
 
 class Solution {
 public:
