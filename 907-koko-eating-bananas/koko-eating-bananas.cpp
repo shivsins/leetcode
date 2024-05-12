@@ -15,7 +15,9 @@ public:
                 else time+=(piles[i]/mid) + 1;
             }
             if(time>h) l=mid+1;
-            else r = mid;
+            else {
+                r = mid;
+            }
         }
         return l;
     }
