@@ -6,11 +6,12 @@ public:
     int findMin(vector<int>& nums) {
         int l = 0, r = nums.size()-1;
         int res = nums[0];
-        while(l<r){
+        while(l<=r){
             int mid = (l+r)/2;
+            res = min(res, nums[mid]);
             if(nums[mid]>nums[r]) l = mid+1;
-            else r = mid;
+            else r = mid-1;
         }
-        return nums[l];
+        return res;
     }
 };
