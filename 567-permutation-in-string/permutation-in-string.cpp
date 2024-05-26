@@ -1,3 +1,10 @@
+//very good question. 
+//the first commented approach is kind of brute force approach but it still works under the give time frame.
+// the second approach is O(constant*n).
+//in second we are moving in batches if s1.length. and creating map for s2 on the fly and we check whether the two maps match or not.
+// just remember to erase the key if it decreases to 0 count.
+
+
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
