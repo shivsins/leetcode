@@ -22,9 +22,7 @@ public:
         for(int i=0;i<len-n-1;i++){
             t=t->next;
         }
-        if(t->next){
-            t->next = t->next->next;
-        }
+        t->next = t->next->next;
         return head;
     }
 };
