@@ -11,7 +11,6 @@ public:
     bool hasCycle(ListNode *head) {
         ListNode* s = head;
         ListNode* f = head;
-        if(!s) return false;
         while(true){
             if(!s) return false;
             if(!f) return false;
