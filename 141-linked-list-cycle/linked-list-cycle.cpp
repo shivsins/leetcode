@@ -19,7 +19,6 @@ public:
             s = s->next;
             f = f->next;
             if(f) f = f->next;
-            else break;
         }
         return false;
     }
