@@ -20,6 +20,5 @@ public:
             f = f->next;
             if(f) f = f->next;
         }
-        return false;
     }
 };
