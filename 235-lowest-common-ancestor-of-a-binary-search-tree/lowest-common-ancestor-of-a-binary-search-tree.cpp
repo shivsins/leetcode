@@ -1,3 +1,7 @@
+//This solution is when the tree is not a binary search tree. If its a binary search tree then it gets very simple.
+// in case of BST: check is both p&q are either greater of less than root if yes then recursively find karo
+//otherwise if one is less and another is greater then that root itselft will be lowest common ancestor.
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
