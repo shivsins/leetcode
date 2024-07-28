@@ -13,15 +13,29 @@ class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
-        int rh = height(root);
+        int rh = getRightHeight(root);
         TreeNode* temp = root;
         while(temp){
             ans.push_back(temp->val);
             temp=temp->right;
         }
+        vector<vector<int>> levelView = getLOTView(root);
+        for(int i = rh; i<levelView.size();i++){
+            ans.push_back(levelView[i].back());
+        }
+        return ans;
+        
+    }
+
+    int getRightHeight(TreeNode* root){
+        if(!root) return 0;
+        return getRightHeight(root->right)+1;
+    }
+
+    vector<vector<int>> getLOTView(TreeNode* root){
         vector<vector<int>> lot;
         queue<TreeNode*> q;
-        if(!root) return ans;
+        if(!root) return lot;
         q.push(root);
         while(!q.empty()){
             int qs = q.size();
@@ -36,15 +50,6 @@ public:
             }
             lot.push_back(level);
         }
-        for(int i = rh; i<lot.size();i++){
-            ans.push_back(lot[i].back());
-        }
-        return ans;
-        
-    }
-
-    int height(TreeNode* root){
-        if(!root) return 0;
-        return height(root->right)+1;
+        return lot;
     }
 };
