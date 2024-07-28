@@ -1,3 +1,9 @@
+//good question to understand dfs and bfs.
+//first we find the depth(say rh) of just the right side view of the tree.
+//then add all the right nodes to the ans
+//then we get the level order traversal view of the tree
+//then add all the last nodes of the level which are greater then rh
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
