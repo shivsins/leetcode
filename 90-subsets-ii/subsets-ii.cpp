@@ -5,9 +5,6 @@ public:
         vector<int> curr;
         sort(nums.begin(), nums.end());
         backtrack(res, nums, curr,0);
-        // for(vector<int> s : rset){
-        //     res.push_back(s);
-        // }
         return res;
     }
 
