@@ -11,7 +11,6 @@ public:
     void dfs(int index, int sum, vector<int> curr,vector<int>& candidates, int target, vector<vector<int>> &res){
         if(sum>target || index>candidates.size()) return;
         if(target == sum){
-            // if(find(res.begin(),res.end(),curr)!=res.end()) return;
             res.push_back(curr);
             return;
         }
