@@ -1,56 +1,33 @@
-#include <vector>
-using namespace std;
-
 class Solution {
 public:
-    // bool dfs(int node, vector<vector<int>>& adj, vector<int>& visited) {
-    //     if (visited[node] == 1) return true; 
-    //     if (visited[node] == 2) return false; 
-        
-    //     visited[node] = 1;
-    //     for (int neighbor : adj[node]) {
-    //         if (dfs(neighbor, adj, visited)) {
-    //             return true;
-    //         }
-    //     }
-    //     visited[node] = 2;
-    //     return false;
-    // }
-    
-   bool canFinish(int N, vector<vector<int>>& arr) {
-        vector<vector<int>> adj(N);
-        vector<int> ind(N, 0);
-        for (auto& edge : arr) {
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> adj(numCourses);
+        vector<int> ind(numCourses, 0);
+        for(vector<int> edge : prerequisites){
             adj[edge[1]].push_back(edge[0]);
             ind[edge[0]]++;
         }
         queue<int> q;
-        int count = 0;
-        for(int i=0; i<N; i++){
+        for(int i=0; i<numCourses; i++){
             if(ind[i]==0){
                 q.push(i);
             }
         }
+        int count = 0;
+        vector<int> vis(numCourses, 0);
         while(!q.empty()){
             int curr = q.front();
             q.pop();
             count++;
-            for(int it : adj[curr]){
-                ind[it]--;
-                if(ind[it]==0){
-                    q.push(it);
+            vis[curr]=1;
+            for(int node : adj[curr]){
+                if(vis[node]==0){
+                    if(--ind[node]==0){
+                        q.push(node);
+                    }
                 }
             }
         }
-        if(count==N) return true;
-        return false;
-        
-        // vector<int> visited(N, 0);
-        // for (int i = 0; i < N; i++) {
-        //     if (visited[i] == 0 && dfs(i, adj, visited)) {
-        //         return false; 
-        //     }
-        // }
-        // return true ; 
+        return count==numCourses;
     }
 };
