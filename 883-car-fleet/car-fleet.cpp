@@ -16,14 +16,16 @@ public:
         
         int n = position.size();
         vector<pair<int,int>> comb(n);
-        vector<float> s;
+        stack<float> s;
         for(int i=0; i<n;i++){
             comb[i] = {position[i],speed[i]};
         }
         sort(comb.begin(), comb.end());
-        for(int i=n-1;i>=0;i--){
-            s.push_back(float(target-comb[i].first)/comb[i].second);
-            if(s.size()>=2 && s[s.size()-1]<=s[s.size()-2]) s.pop_back();
+        for(int i=n-1; i>=0; i--){
+            float t = float(target-comb[i].first)/comb[i].second;
+            // s.push(t);
+            if(s.size()>=1 && t<=s.top()) continue;
+            else s.push(t);
         }
         return s.size();
     }
