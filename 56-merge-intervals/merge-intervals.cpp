@@ -6,21 +6,19 @@ public:
         });
         int n = v.size();
         vector<vector<int>> ans;
-        if(n<=1) return v;
-        int l = 0, r = 1;
-        int b = v[l][1];
+        if(n<2) return v;
+        ans.push_back(v[0]);
+        int l=0, r=1;
         while(r<n){
-            if(v[r][0]<=b){
-                b = max(b, v[r][1]);
+            if(ans[l][1]>=v[r][0]){
+                ans[l][1] = max(ans[l][1], v[r][1]);
                 r++;
             }else{
-                ans.push_back({v[l][0], b});
-                l=r;
+                ans.push_back(v[r]);
+                l++;
                 r++;
-                b=v[l][1];
             }
         }
-        ans.push_back({v[l][0], b});
         return ans;
     }
 };
