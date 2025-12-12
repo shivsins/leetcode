@@ -1,0 +1,28 @@
+class MyCalendar {
+public:
+    map<int,int> m;
+    MyCalendar() {
+        
+    }
+    
+    bool book(int startTime, int endTime) {
+        m[startTime]++;
+        m[endTime]--;
+        int sum=0;
+        for(auto &[f,s] : m){
+            sum+=s;
+            if(sum>1){
+                m[startTime]--;
+                m[endTime]++;
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar* obj = new MyCalendar();
+ * bool param_1 = obj->book(startTime,endTime);
+ */
