@@ -14,19 +14,19 @@ public:
             ans.push_back(curr);
             return;
         }
-        // curr.push_back(candidates[index]);
-        // sum = sum+candidates[index];
-        // dfs(ans, candidates, target, index, curr,sum);
-        // curr.pop_back();
-        // sum = sum-candidates[index];
-        // dfs(ans, candidates, target, index+1, curr,sum);
+        curr.push_back(candidates[index]);
+        sum = sum+candidates[index];
+        dfs(ans, candidates, target, index, curr,sum);
+        curr.pop_back();
+        sum = sum-candidates[index];
+        dfs(ans, candidates, target, index+1, curr,sum);
         
-        for(int i=index;i<candidates.size();i++){
-            curr.push_back(candidates[i]);
-            sum+=candidates[i];
-            dfs(ans, candidates, target, i,curr, sum);
-            curr.pop_back();
-            sum-=candidates[i];
-        }
+        // for(int i=index;i<candidates.size();i++){
+        //     curr.push_back(candidates[i]);
+        //     sum+=candidates[i];
+        //     dfs(ans, candidates, target, i,curr, sum);
+        //     curr.pop_back();
+        //     sum-=candidates[i];
+        // }
     }
 };
