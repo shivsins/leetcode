@@ -18,17 +18,19 @@
  */
 class Solution {
 public:
-    int res = INT_MIN;
     int maxPathSum(TreeNode* root) {
-        post(root);
-        return res;
+        int sum=INT_MIN;
+        path(root, sum);
+        return sum;
     }
 
-    int post(TreeNode* root){
-        if(!root) return 0;
-        int lm = max(post(root->left), 0);
-        int rm = max(post(root->right), 0);
-        res = max(res, lm+rm+root->val);
-        return max(lm,rm)+root->val;
+    int path(TreeNode* root, int &sum){
+        if(root==NULL) return 0;
+        int ls = path(root->left, sum);
+        int rs = path(root->right, sum);
+        sum = max(sum, ls+rs+root->val);
+        return max(0,root->val+max(ls,rs));
     }
+
+    
 };
