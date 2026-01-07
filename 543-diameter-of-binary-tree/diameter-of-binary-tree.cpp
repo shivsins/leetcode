@@ -1,3 +1,6 @@
+//at each node store the max diameter and return the max. It is possible that the max is not passing through
+// root so keep checking at each node.
+
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -12,17 +15,18 @@
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        int ans = 0;
-        depth(root,ans);
+        if(root==NULL) return 0;
+        int ans=0;
+        height(root,ans);
         return ans;
     }
 
-    int depth(TreeNode* root, int &ans){
+    int height(TreeNode* root, int &ans) {
         if(root==NULL) return 0;
-        int l = depth(root->left, ans);
-        int r = depth(root->right, ans);
-        ans = max(ans, l+r);
-        return max(l,r)+1;
+        int lh = height(root->left, ans);
+        int rh = height(root->right, ans);
+        ans=max(ans, lh+rh);
+        return 1+max(lh,rh);
     }
     
 };
