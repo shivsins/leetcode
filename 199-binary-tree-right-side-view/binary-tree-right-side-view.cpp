@@ -19,43 +19,51 @@ class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
-        int rh = getRightHeight(root);
-        TreeNode* temp = root;
-        while(temp){
-            ans.push_back(temp->val);
-            temp=temp->right;
-        }
-        vector<vector<int>> levelView = getLOTView(root);
-        for(int i = rh; i<levelView.size();i++){
-            ans.push_back(levelView[i].back());
-        }
+        // int rh = getRightHeight(root);
+        // TreeNode* temp = root;
+        // while(temp){
+        //     ans.push_back(temp->val);
+        //     temp=temp->right;
+        // }
+        // vector<vector<int>> levelView = getLOTView(root);
+        // for(int i = rh; i<levelView.size();i++){
+        //     ans.push_back(levelView[i].back());
+        // }
+        // return ans;
+        getRV(root,ans,0);
         return ans;
-        
     }
 
-    int getRightHeight(TreeNode* root){
-        if(!root) return 0;
-        return getRightHeight(root->right)+1;
+    void getRV(TreeNode* root, vector<int> &ans, int height){
+        if(root==NULL) return;
+        if(height==ans.size()) ans.push_back(root->val);
+        getRV(root->right, ans, height+1);
+        getRV(root->left, ans, height+1);
     }
 
-    vector<vector<int>> getLOTView(TreeNode* root){
-        vector<vector<int>> lot;
-        queue<TreeNode*> q;
-        if(!root) return lot;
-        q.push(root);
-        while(!q.empty()){
-            int qs = q.size();
-            vector<int> level;
-            while(qs){
-            TreeNode* node = q.front();
-            q.pop();
-            level.push_back(node->val);
-            if(node->left) q.push(node->left);
-            if(node->right) q.push(node->right);
-            qs--; 
-            }
-            lot.push_back(level);
-        }
-        return lot;
-    }
+    // int getRightHeight(TreeNode* root){
+    //     if(!root) return 0;
+    //     return getRightHeight(root->right)+1;
+    // }
+
+    // vector<vector<int>> getLOTView(TreeNode* root){
+    //     vector<vector<int>> lot;
+    //     queue<TreeNode*> q;
+    //     if(!root) return lot;
+    //     q.push(root);
+    //     while(!q.empty()){
+    //         int qs = q.size();
+    //         vector<int> level;
+    //         while(qs){
+    //         TreeNode* node = q.front();
+    //         q.pop();
+    //         level.push_back(node->val);
+    //         if(node->left) q.push(node->left);
+    //         if(node->right) q.push(node->right);
+    //         qs--; 
+    //         }
+    //         lot.push_back(level);
+    //     }
+    //     return lot;
+// }
 };
