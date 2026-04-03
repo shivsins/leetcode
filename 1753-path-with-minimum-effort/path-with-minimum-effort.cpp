@@ -8,17 +8,20 @@ public:
         vector<vector<int>> dir = {{1,0}, {-1,0}, {0,1}, {0,-1}};
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
         pq.push({0,0,0});
+        efforts[0][0]=0;
         while(!pq.empty()){
             vector<int> curr = pq.top();
             pq.pop();
+            int x=curr[1];
+            int y=curr[2];
             for(vector<int> d : dir){
-                int nx = d[0]+curr[1];
-                int ny = d[1]+curr[2];
-                if(nx>-1 && nx<rows && ny>-1 && ny<cols){
-                    int effort = max(abs(heights[nx][ny]-heights[curr[1]][curr[2]]),curr[0]);
-                    if(effort<efforts[nx][ny]){
-                        efforts[nx][ny]=effort;
-                        pq.push({effort,nx,ny});
+                int dx=x+d[0];
+                int dy=y+d[1];
+                if(dx>-1 && dx<rows && dy>-1 &&dy<cols){
+                    int effort = max(curr[0],abs(heights[x][y]-heights[dx][dy]));
+                    if(effort<efforts[dx][dy]){
+                        pq.push({effort,dx,dy});
+                        efforts[dx][dy]=effort;
                     }
                 }
             }
