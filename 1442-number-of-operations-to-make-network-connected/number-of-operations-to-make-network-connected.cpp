@@ -11,7 +11,7 @@ public:
         int pu = findParent(u);
         int pv = findParent(v);
         if(pu==pv) return;
-        else if(size[u]<size[v]){
+        else if(size[pu]<size[pv]){
             parent[pu]=pv;
             size[pv]+=size[pu];
         }else{
