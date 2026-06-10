@@ -7,26 +7,17 @@ public:
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> ans;
         vector<int> curr;
-        backTrack(ans,nums,curr,0);
+        backtrack(ans,nums,curr,0);
+        ans.push_back({});
         return ans;
     }
 
-    // void backTrack(vector<vector<int>> &ans, vector<int>& nums, vector<int> curr, int index ){
-    //     if(index>= nums.size()) {
-    //         ans.push_back(curr);
-    //         return;
-    //     }
-    //     backTrack(ans, nums, curr, index+1);
-    //     curr.push_back(nums[index]);
-    //     backTrack(ans, nums, curr, index+1);
-    // }
-
-    void backTrack(vector<vector<int>> &ans, vector<int>& nums, vector<int> curr, int index){
+    void backtrack(vector<vector<int>> &ans, vector<int> nums, vector<int> curr, int ind){
+        if(ind==nums.size()) return;
+        curr.push_back(nums[ind]);
         ans.push_back(curr);
-        for(int i=index;i<nums.size();i++){
-            curr.push_back(nums[i]);
-            backTrack(ans, nums, curr, i+1);
-            curr.pop_back();
-        }
+        backtrack(ans, nums,curr , ind+1);
+        curr.pop_back();
+        backtrack(ans, nums, curr, ind+1);
     }
 };
