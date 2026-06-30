@@ -5,13 +5,11 @@ public:
         int sell=0;
         int ans = 0;
         int n = prices.size();
-        while(buy<n){
-            sell++;
-            while(sell<n && prices[sell]>=prices[buy]){
-                ans = max(ans,prices[sell] - prices[buy]);
-                sell++;
+        for(int i=1;i<n;i++){
+            if(prices[i]<prices[buy]) buy=i;
+            else{
+                ans=max(ans, prices[i]-prices[buy]);
             }
-            buy=sell;
         }
         return ans;
     }
