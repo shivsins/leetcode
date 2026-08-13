@@ -12,6 +12,7 @@ public:
         while(!q.empty()){
             vector<int> curr = q.front();
             q.pop();
+            // if(curr[1]==dst) break;
             int stops = curr[2];
             if(stops<=k){
                 for(vector<int> node : adj[curr[1]]){
