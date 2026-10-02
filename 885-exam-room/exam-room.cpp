@@ -2,63 +2,63 @@ class ExamRoom {
 public:
     int total;
     set<int> seats;
-
+    int curr;
     ExamRoom(int n) {
-        total = n;
+        this->total=n;
+        this->curr=0;
     }
-
+    
     int seat() {
-        // No seats occupied
-        if (seats.empty()) {
+        if(curr==0){
+            curr=1;
             seats.insert(0);
             return 0;
         }
-
-        int assigned = -1;
-        int maxDist = -1;
-
-        // 1. Check left edge
-        int first = *seats.begin();
-
-        if (first > maxDist) {
-            maxDist = first;
-            assigned = 0;
+        // if(curr==1){
+        //     curr=2;
+        //     int assigned=0;
+        //     if(*seats.begin()-assigned<total-1-*seats.begin()){
+        //         assigned=total-1;
+        //     }
+        //     seats.insert(assigned);
+        //     return assigned;
+        // }
+        int start=0, end=*seats.begin(), dist=0, assigned=0;
+        if(seats.find(start)==seats.end()){
+            dist=end-start;
         }
-
-        // 2. Check gaps between occupied seats
+        start=*seats.begin();
         auto it = seats.begin();
-        auto nextIt = next(it);
-
-        while (nextIt != seats.end()) {
-            int left = *it;
-            int right = *nextIt;
-
-            int mid = (left + right) / 2;
-            int dist = mid - left;
-
-            if (dist > maxDist) {
-                maxDist = dist;
-                assigned = mid;
+        it++;
+        for(;it!=seats.end();it++){
+            end=*it;
+            int mid=(start+end)/2;
+            if(mid-start>dist){
+                dist=mid-start;
+                assigned=mid;
             }
-
-            ++it;
-            ++nextIt;
+            start=end;
         }
-
-        // 3. Check right edge
-        int last = *seats.rbegin();
-        int rightDist = total - 1 - last;
-
-        if (rightDist > maxDist) {
-            maxDist = rightDist;
-            assigned = total - 1;
+        end=total-1;
+        if(seats.find(end)==seats.end()){
+            if(end-start>dist){
+                assigned=end;
+            }
         }
-
         seats.insert(assigned);
+        curr++;
         return assigned;
     }
-
+    
     void leave(int p) {
         seats.erase(p);
+        curr--;
     }
 };
+
+/**
+ * Your ExamRoom object will be instantiated and called as such:
+ * ExamRoom* obj = new ExamRoom(n);
+ * int param_1 = obj->seat();
+ * obj->leave(p);
+ */
