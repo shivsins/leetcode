@@ -17,7 +17,7 @@ public:
                 r++;
             }else{
                 res=max(res, r-l);
-                while(m[s[r]]){
+                while(l<r && m[s[r]]){
                     m[s[l]]--;
                     l++;
                 }
