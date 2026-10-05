@@ -6,18 +6,21 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         map<char,int> m;
-        int l = 0, r = 1;
+        int l = 0, r = 1, n=s.size();
         int res = 1;
         m[s[l]]++;
-        if(s.size()==0 || s.size()==1) return s.size();
-        while(r<s.size()){
+        if(n==0) return 0;
+        while(r<n){
             if(!m[s[r]]){
-                res = max(res,r-l+1);
                 m[s[r]]++;
+                res=max(res, r-l+1);
                 r++;
             }else{
-                m[s[l]]--;
-                l++;
+                res=max(res, r-l);
+                while(m[s[r]]){
+                    m[s[l]]--;
+                    l++;
+                }
             }
         }
         return res;
