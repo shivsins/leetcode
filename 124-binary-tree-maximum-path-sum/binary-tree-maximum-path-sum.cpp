@@ -19,18 +19,33 @@
 class Solution {
 public:
     int maxPathSum(TreeNode* root) {
-        int sum=INT_MIN;
-        path(root, sum);
-        return sum;
+       int ans=INT_MIN;
+       cal(root,ans);
+       return ans;
     }
 
-    int path(TreeNode* root, int &sum){
+    int cal(TreeNode* root, int &ans){
         if(root==NULL) return 0;
-        int ls = path(root->left, sum);
-        int rs = path(root->right, sum);
-        sum = max(sum, ls+rs+root->val);
-        return max(0,root->val+max(ls,rs));
+        int ls=max(0,cal(root->left,ans));
+        int rs=max(0,cal(root->right,ans));
+        ans=max(ans,ls+rs+root->val);
+        return root->val+max(ls,rs);
     }
+
+    // int path(TreeNode* root, int &sum){
+    //     if(root==NULL) return 0;
+    //     int ls = path(root->left, sum);
+    //     int rs = path(root->right, sum);
+    //     sum = max(sum, ls+rs+root->val);
+    //     return max(0,root->val+max(ls,rs));
+    // }
+
+    // int path(Treeode* root, int &sum){
+    //     if(root==NULL) return 0;
+    //     int ls = path(root->left, sum);
+    //     int rs = path(root->right, sum);
+    //     return max(root->val+ls+rs, max(max(ls, ls+root->val),max(rs,rs+root->val)));
+    // }
 
     
 };
