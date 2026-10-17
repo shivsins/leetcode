@@ -1,13 +1,15 @@
 class Solution {
 public:
     int climbStairs(int n) {
-        vector<int> memo(n+1,-1);
-        memo[0]=1;
-        memo[1]=1;
+        // vector<int> memo(n+1,-1);
+        int step1=1;
+        int step2=1;
         for(int i=2;i<=n;i++){
-            memo[i]=memo[i-1]+memo[i-2];
+            int curr=step1+step2;
+            step2=step1;
+            step1=curr;
         }
-        return memo[n];
+        return step1;
     }
 
     int dp(int ind, vector<int> &memo){
